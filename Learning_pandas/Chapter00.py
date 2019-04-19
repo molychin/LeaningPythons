@@ -315,28 +315,92 @@ Jupyter笔记本是为您的熊猫分析创建演示文稿的强大工具。这�
 在视觉上丰富了代码片段、样式化文本和图形。
 
 
-	• Reproduction 再现/分享
-An important piece of research is sharing and making your research reproducible. It is often said that if other researchers cannot reproduce your experiment and results, then you didn't prove a thing.
-Fortunately, for you, by having used pandas and Python, you will be able to easily make your analysis reproducible. This can be done by sharing the Python code that drives your pandas code, as well as the data.
-Jupyter notebooks also provide a convenient means of packaging both the code and application in a means that can be easily shared with anyone else with a Jupyter Notebook installation. And there are many free, and secure, sharing sites on the internet that allow you to either create or deploy your Jupyter notebooks for sharing.
+• Reproduction 再现/分享
+An important piece of research is sharing and making your research reproducible. 
+It is often said that if other researchers cannot reproduce your experiment and 
+results, then you didn't prove a thing.
+Fortunately, for you, by having used pandas and Python, you will be able to easily 
+make your analysis reproducible. This can be done by sharing the Python code that 
+drives your pandas code, as well as the data.
+Jupyter notebooks also provide a convenient means of packaging both the code and 
+application in a means that can be easily shared with anyone else with a Jupyter 
+Notebook installation. And there are many free, and secure, sharing sites on the 
+internet that allow you to either create or deploy your Jupyter notebooks for sharing.
 一项重要的研究是分享并使你的研究具有可复制性。人们常说，如果其他研究人员不能复制你的实验和结果，那么你就没有证明什么。
-幸运的是，对于您来说，通过使用panda和python，您将能够轻松地使您的分析具有可复制性。这可以通过共享驱动熊猫代码的python代码以及数据来实现。
-Jupyter笔记本电脑还提供了一种方便的方法，将代码和应用程序打包在一种可以通过Jupyter笔记本安装轻松与任何其他人共享的方法中。互联网上有许多免费、安全的共享站点，允许您创建或部署Jupyter笔记本进行共享。
+幸运的是，对于您来说，通过使用panda和python，您将能够轻松地使您的分析具有可复制性。这可以通过共享
+驱动熊猫代码的python代码以及数据来实现。
+Jupyter笔记本电脑还提供了一种方便的方法，将代码和应用程序打包在一种可以通过Jupyter笔记本安装
+轻松与任何其他人共享的方法中。互联网上有许多免费、安全的共享站点，允许您创建或部署Jupyter笔记本进行共享。
+
+
+A note on being iterative and agile
+Something very important to understand about data manipulation, analysis, and science is that it is an
+iterative process. Although there is a natural forward flow along the stages previously discussed, you will
+end up going forwards and backwards in the process. For instance, while in the exploration phase you
+may identify anomalies in the data that relate to data purity issues from the preparation stage, and need to
+go back and rectify those issues.
+This is part of the fun of the process. You are on an adventure to solve your initial problem, all the while
+gaining incremental insights about the data you are working with. These insights may lead you to ask new
+questions, to more exact questions, or to a realization that your initial questions were not the actual
+questions that needed to be asked. The process is truly a journey and not necessarily the destination.
+关于迭代和敏捷的注记
+了解数据操作、分析和科学的一些非常重要的事情是，它是一个迭代过程。虽然在前面讨论的阶段中有一个自然的前进流，
+但是您最终将在这个过程中前进和后退。例如，在勘探阶段，您可以识别与准备阶段的数据纯度问题相关的数据中的异常，
+并需要返回并纠正这些问题。
+这是这个过程的一部分乐趣。您正在冒险解决您的初始问题，同时获得有关您正在使用的数据的增量洞察。
+这些见解可能会引导你提出新的问题，更确切的问题，或者意识到你最初的问题不是需要问的实际问题。
+这个过程真的是一次旅行，不一定是目的地。
+
+
+■Concepts of data and analysis in our tour of pandas
+大熊猫旅游中的数据与分析概念
+
+Types of data
+Working with data in the wild you will come across several broad categories of data that will need to be
+coerced into pandas data structures. They are important to understand as the tools required to work with
+each type vary.
+数据类型
+在野外处理数据时，您将遇到几个需要强制转换成熊猫数据结构的广泛数据类别。理解它们很重要，因为使用每种类型所需的工具各不相同。
+
+Structured
+Structured data is any type of data that is organized as fixed fields within a record or file, such as data in
+relational databases and spreadsheets. Structured data depends upon a data model, which is the defined
+organization and meaning of the data and often how the data should be processed. This includes
+specifying the type of the data (integer, float, string, and so on), and any restrictions on the data, such as
+the number of characters, maximum and minimum values, or a restriction to a certain set of values.
+结构化的数据
+结构化数据是记录或文件中组织为固定字段的任何类型的数据，例如关系数据库和电子表格中的数据。结构化数据依赖于
+一个数据模型，它是数据的定义组织和含义，并且通常是处理数据的方式。这包括指定数据的类型（整数、浮点、字符串等），
+以及对数据的任何限制，例如字符数、最大值和最小值，或者对一组特定值的限制。
+
+Unstructured
+Unstructured data is data that is without any defined organization and which specifically does not break
+down into stringently defined columns of specific types. This can consist of many types of information
+such as photos and graphic images, videos, streaming sensor data, web pages, PDF files, PowerPoint
+presentations, emails, blog entries, wikis, and word processing documents.
+非结构化的数据
+非结构化数据是指没有任何定义的组织的数据，具体来说，这些数据不会分解为特定类型的严格定义的列。
+这可以包含许多类型的信息，如照片和图形图像、视频、流传感器数据、网页、PDF文件、PowerPoint演示文稿、
+电子邮件、博客条目、维基和文字处理文档。
+
+Semi-structured
+Semi-structured data fits in between unstructured. It can be considered a type of structured data, but lacks
+the strict data model structure. JSON is a form of semi-structured data. While good JSON will have a
+defined format, there is no specific schema for data that is always strictly enforced. Much of the time, the
+data will be in a repeatable pattern that can be easily converted into structured data types like the pandas
+DataFrame, but the process may need some guidance from you to specify or coerce data types.
+半结构化数据
+半结构化数据介于非结构化数据之间。它可以被视为一种结构化数据，但缺乏严格的数据模型结构。JSON是半结构化数据的一种形式。
+虽然好的JSON将有一个定义好的格式，但是对于总是严格执行的数据，没有特定的模式。在大多数情况下，数据将以可重复的模式出现，
+可以很容易地转换为结构化数据类型，如熊猫数据帧，但该过程可能需要您提供一些指导，以指定或强制数据类型。
+
+
+
+
+
 
 
 '''
-
-import numpy as np
-import pandas as pd
-
-s1=pd.Series([2,5,7,9,np.nan])   #加入np.nan后，整数自动转化为浮点数
-print(s1[[1,3]])
-
-#A Series object can be created with a user-defined index by specifying the labels for
-#the index using the index parameter.
-s2=pd.Series([34,44,2,65],index=['a','d','e','伤害'])
-print(s2)
-
 
 
 
