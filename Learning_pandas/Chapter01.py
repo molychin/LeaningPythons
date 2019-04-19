@@ -1,32 +1,39 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Apr 19 14:28:52 2019
-
 @author: Administrator
 """
 
-
 # coding: utf-8
-
 # # Learning pandas
+#High-performance data manipulation and analysis in Python
+#Michael Heydt
+
 '''
 Chapter 1 , pandas and Data Analysis, is a hands-on introduction to the key features of pandas. 
 The idea of this chapter is to provide some context for using pandas in the context of statistics 
 and data science. The chapter will get into several concepts in data science and show how they are 
 supported by pandas. This will set a context for each of the subsequent chapters, mentioning each 
 chapter relates to both data science and data science processes.
-
+第一章，大熊猫与数据分析，是对大熊猫主要特征的亲身介绍。本章的目的是为在统计和数据科学的背景下使用熊猫提供一些背景。
+本章将探讨数据科学中的几个概念，并说明熊猫是如何支持它们的。这将为后面的每一章设置一个上下文，
+每一章都涉及到数据科学和数据科学过程。
 
 Pandas is a popular Python package used for practical, real-world data analysis. 
 It provides efficient,fast, and high-performance data structures that make data exploration and analysis very easy. 
-Thislearner's guide will help you through a comprehensive set of features provided by the pandas library toperform 
+Thislearner's guide will help you through a comprehensive set of features provided by the pandas library to perform 
 efficient data manipulation and analysis.
+熊猫是一个流行的python包，用于实际的、真实的数据分析。它提供了高效、快速和高性能的数据结构，使数据勘探和分析非常容易。
+本学习指南将帮助您通过熊猫图书馆提供的一套综合功能来执行高效的数据操作和分析。
 
 Who this book is for
 This book is ideal for data scientists, data analysts, and Python programmers who want to plunge into data
 analysis using pandas, and anyone curious about analyzing data. Some knowledge of statistics and
 programming will help you to get the most out of this book but that's not strictly required. Prior exposure
 to pandas is also not required.
+这本书是给谁的
+这本书非常适合数据科学家、数据分析师和希望使用熊猫进行数据分析的Python程序员，以及任何对分析数据感兴趣的人。
+统计和编程方面的一些知识将帮助您从本书中获得最大的收获，但这并不是严格要求的。也不需要事先接触大熊猫。
 
 So, let's jump in. In this chapter, we will cover:
 ●What pandas is, why it was created, and what it gives you
@@ -36,6 +43,14 @@ So, let's jump in. In this chapter, we will cover:
 ●Basic concepts of data analysis and statistical analysis
 ●Types of data and their applicability to pandas
 ●Other libraries in the Python ecosystem that you will likely use with pandas
+所以，让我们跳进去。在本章中，我们将介绍：
+熊猫是什么，它为什么被创造出来，它给了你什么
+大熊猫与数据分析和数据科学的关系
+数据分析所涉及的过程以及熊猫如何支持数据分析
+数据和分析的一般概念
+数据分析和统计分析的基本概念
+数据类型及其对大熊猫的适用性
+python生态系统中可能与熊猫一起使用的其他库
 
 pandas is a Python library containing high-level data structures and tools that have been created to help
 Python programmers to perform powerful data analysis. 
