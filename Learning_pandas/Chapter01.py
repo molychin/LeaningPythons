@@ -54,13 +54,16 @@ python生态系统中可能与熊猫一起使用的其他库
 
 pandas is a Python library containing high-level data structures and tools that have been created to help
 Python programmers to perform powerful data analysis. 
+PANDAS是一个包含高级数据结构和工具的python库，创建这些结构和工具是为了帮助python程序员执行强大的数据分析。
 
 To do this processing, a tool was needed that allows us to retrieve, index, clean and tidy, reshape,
 combine, slice, and perform various analyses on both single- and multidimensional data, including
 heterogeneous-typed【混合类型】 data that is automatically aligned along a set of common index labels. This is where
 pandas comes in, having been created with many useful and powerful features such as the following:
+要进行这种处理，需要一种工具，允许我们检索、索引、清理和整理、重塑、组合、切片和对一维和多维数据执行各种分析，
+包括异构类型的【混合类型】数据，这些数据会自动沿一组公共索引标签对齐。熊猫就是在这里诞生的，它们具有许多有用和强大的特征，如：
 ●Fast and efficient Series and DataFrame objects for data manipulation with integrated indexing
-Intelligent data alignment using indexes and labels
+●Intelligent data alignment using indexes and labels
 ●Integrated handling of missing data
 ●Facilities for converting messy data into orderly data (tidying)
 ●Built-in tools for reading and writing data between in-memory data structures and files, databases,
@@ -71,20 +74,35 @@ and web services
 ●Columns can be inserted and deleted from data structures for size mutability
 ●Aggregating or transforming data with a powerful data grouping facility to perform split-applycombine on datasets
 ●High-performance merging and joining of datasets
-●Hierarchical indexing facilitating working with high-dimensional data in a lower-dimensional data
-structure
+●Hierarchical indexing facilitating working with high-dimensional data in a lower-dimensional data structure
 ●Extensive features for time series data, including date range generation and frequency conversion,
 moving window statistics, moving window linear regressions, date shifting, and lagging
 ●Highly optimized for performance, with critical code paths written in Cython or C
+●快速高效的数据操作系列和数据帧对象，集成索引智能数据对齐
+●使用索引和标签的智能数据对齐
+●对丢失数据的综合处理
+●将杂乱数据转换为有序数据的设施（整理）
+●用于在内存数据结构和文件、数据库和Web服务之间读取和写入数据的内置工具
+●能够处理存储在许多常用格式（如csv、excel、hdf5和json）中的数据
+●数据集的灵活重塑和旋转
+●基于智能标签的切片、花式索引和大型数据集子集
+●可以从数据结构中插入和删除列，以实现大小的可变性。
+●使用强大的数据分组功能聚合或转换数据，以便对数据集执行拆分应用程序组合
+●数据集的高性能合并和连接
+●分层索引，便于在低维数据结构中处理高维数据
+●时间序列数据的广泛功能，包括日期范围生成和频率转换、移动窗口统计、移动窗口线性回归、日期移动和滞后
+●高度优化性能，关键代码路径用cython或c编写
 
 Logically, the overall process can be broken into three major areas of discipline:
+从逻辑上讲，整个过程可以分为三个主要领域：
 ●Data manipulation  数据处理
 ●Data analysis    数据分析
 ●Data science    数据科学
 
-■数据处理
+■Data manipulation  数据处理
 This requires many different tasks and capabilities from a tool that
 manipulates data in preparation for analysis. The features needed from such a tool include:
+这需要一个工具提供许多不同的任务和功能，该工具可以操作数据，为分析做准备。这种工具所需的特性包括：
 ●Programmability for reuse and sharing  可编程的重用和共享
 ●Access to data from external sources   访问外部数据来源
 ●Storing data locally  存储本地数据
@@ -96,11 +114,12 @@ manipulates data in preparation for analysis. The features needed from such a to
 ●Effective handling of bad data  有能力处理坏数据
 ●Grouping data into common baskets  集群同类数据
 ●Aggregation of data of like characteristics  依据性质分类数据
-●Application of functions to calculate meaning or perform transformations
+●Application of functions to calculate meaning or perform transformations 应用函数计算意义或执行转换
 ●Query and slicing to explore pieces of the whole 为探索整体而查询和切片
 ●Restructuring into other forms 重构数据形式
 ●Modeling distinct categories of data such as categorical, continuous, discrete, and time series
-●Resampling data to different frequencies 
+为不同类别的数据建模，如分类、连续、离散和时间序列
+●Resampling data to different frequencies 将数据重新采样到不同的频率
 
 
 脏数据（Dirty Read）是指源系统中的数据不在给定的范围内或对于实际业务毫无意义，或是数据格式非法，
@@ -109,30 +128,120 @@ manipulates data in preparation for analysis. The features needed from such a to
 另外一个事务也访问这个数据，然后使用了这个数据。因为这个数据是还没有提交的数据，那么另外一个
 事务读到的这个数据是脏数据，依据脏数据所做的操作可能是不正确的。
 
-■Data analysis
+■Data analysis 数据分析
 Data analysis is the process of creating meaning from data. Data with quantified meaning is often called
 information. Data analysis is the process of creating information from data through the creation of data
 models and mathematics to find patterns. It often overlaps【重叠】 data manipulation and the distinction between
 the two is not always clear. Many data manipulation tools also contain analyses functions, and data
-analysis tools often provide data manipulation capabilities.Data science
-
+analysis tools often provide data manipulation capabilities.
+数据分析是从数据中创造意义的过程。具有量化意义的数据通常称为信息。数据分析是从数据中创建信息的过程，
+通过创建数据模型和数学来寻找模式。它经常与数据操作重叠，两者之间的区别并不总是很清楚。
+许多数据操作工具还包含分析功能，数据分析工具通常提供数据操作功能。
 
 数据分析是赋予数据意义的过程。数据的定性分形往往意味着（产生）信息。
-■Data science
+
+■Data science  数据科学
 Data science is the process of using statistics and data analysis processes to create an understanding of
 phenomena within data. Data science usually starts with information and applies a more complex
 domain-based analysis to the information. These domains span many fields such as mathematics,
 statistics, information science, computer science, machine learning, classification, cluster analysis, data
-mining, databases, and visualization. Data science is multidisciplinary【多学科】. Its methods of domain analysis are
-often very different and specific to a specific domain.
+mining, databases, and visualization. Data science is multidisciplinary【多学科】. 
+Its methods of domain analysis are often very different and specific to a specific domain.
+数据科学是利用统计和数据分析过程来理解数据中的现象的过程。数据科学通常从信息开始，并对信息应用更复杂的基于领域的分析。
+这些领域涉及许多领域，如数学、统计学、信息科学、计算机科学、机器学习、分类、聚类分析、数据挖掘、数据库和可视化。
+数据科学是多学科的。它的领域分析方法通常非常不同，并且针对特定的领域。
 
-The process of data analysis
+■The process of data analysis  数据分析过程
 
 One description of the steps involved in the process of data analysis is given on the pandas web site:
+熊猫网站上提供了数据分析过程中涉及的步骤说明：
 ●Munging and cleaning data  挖掘和清理数据
-●Analyzing/modeling  分形与建模
+●Analyzing/modeling  分析与建模
 ●Organization into a form suitable for communication  组织适合的形式便于交流
+
+
+This process sets up a framework for defining logical steps that are taken in working with data. For now,
+let's take a quick look at each of these steps in the process and some of the tasks that you as a data analyst
+using pandas will perform.
+It is important to understand that this is not purely a linear process. It is best done in a
+highly interactive and agile/iterative manner.
+这个过程建立了一个框架，用于定义在处理数据时所采取的逻辑步骤。现在，让我们快速了解过程中的每个步骤，
+以及作为使用熊猫的数据分析师将执行的一些任务。
+重要的是要理解这不是一个纯粹的线性过程。最好以高度交互和敏捷/迭代的方式完成。
+
+■The Data Process 数据过程
+• Ideation 构思能力/思考问题/提出问题（以期找到合理的模式假设去运用于有效/灵活/科学的决策）
+The first step in any data problem is to identify what it is you want to figure out. 
+Ideation generally relates to hypothesizing about patterns in data that can 
+be used to make intelligent decisions.
+任何数据问题的第一步都是确定您想要找出什么。意念通常与数据模式的假设有关，数据模式可用于做出明智的决策。
+
+【寻找问题】
+	But what kinds of decision are we typically looking to make? The following are several questions for which answers are commonly asked:
+		○ Why did something happen?  事情为什么会发生
+		○ Can we predict the future using historical data? 是否可以利用历史数据来预见/预测未来
+		○ How can I optimize operations in the future?  怎样可以在以后优化操作
+	To get answers to these questions, one must be involved with collecting and understanding data relative to the problem.
+	
+	pandas itself does not provide tools to assist in ideation. But once you have gained understanding and skill in using pandas, you will naturally realize how pandas will help you in being able to formulate ideas. This is because you will be armed with a powerful tool you can used to frame many complicated hypotheses.
+	
+	• Retrieval 检索/获取数据
+	Once you have an idea you must then find data to try and support your hypothesis. 
+	【生肉，未经处理过的源数据，不能直接用于数据分析，这样会消化不良或拉肚子。生肉（未处理过的数据）意味着非组织的，有各种格式，包含错误数据，还需要手工处理。】
+	Data is often very raw, even if obtained from data sources that you have created or from within your  organization. Being raw means that the data can be disorganized, may be in various formats, and erroneous; relative to supporting your analysis, it may be incomplete and need manual augmentation.
+	In either case, pandas provides a robust and easy-to-use set of tools for retrieving data from various sources and that may be in many different formats. pandas also gives us the ability to not only retrieve data, but to also provide an initial structuring of the data via pandas data structures without needing to manually create complex coding, which may be required in other tools or programming languages.
+	
+	
+	• Preparation 准备
+	Well there are a number of reasons:
+		○ The data is simply incorrect
+		○ Parts of the dataset are missing
+		○ Data is not represented using measurements appropriate for your analysis
+		○ The data is in formats not convenient for your analysis
+		○ Data is at a level of detail not appropriate for your analysis
+		○ Not all the fields you need are available from a single source
+		○ The representation of data differs depending upon the provider
+
+The preparation process focuses on solving these issues. pandas provides many great facilities for preparing data, often referred to as tidying up data. These facilities include intelligent means of handling missing data, converting data types, using format conversion, changing frequencies of measurements,
+joining data from multiple sets of data, mapping/converting symbols into shared representations, and grouping data, among many others. 
+准备过程的重点是解决这些问题。pandas为准备数据提供了许多很好的设施，通常被称为整理数据。这些设施包括处理丢失数据的智能方法、转换数据类型、使用格式转换、更改测量频率，连接多组数据中的数据，将符号映射/转换为共享表示，以及对数据进行分组等。
+
+	• Exploration 探索
+	Exploration can include various tasks such as:
+		○ Examining how variables relate to each other  检查和其他数据的相关性
+		○ Determining how the data is distributed  决定是否发布数据
+		○ Finding and excluding outliers    查找和排除异常值
+		○ Creating quick visualizations  建立快速可视化
+		○ Quickly creating new data representations or models to feed into more permanent and detailed
+		快速创建新的数据表示或模型，以提供更持久和更详细的信息
+		○ modeling processes  建模过程
+
+	The expressiveness of the syntax of pandas lets you describe complex data manipulation constructs succinctly, and the result of every action you take upon your data is immediately presented for your inspection. This allows you to quickly determine the validity of the action you just took without having to recompile and completely rerun your programs.
+	pandas语法的表达性使您能够简洁地描述复杂的数据操作结构，并且您对数据采取的每个操作的结果都会立即呈现给您进行检查。这允许您快速确定刚执行的操作的有效性，而无需重新编译和完全重新运行程序。
+
+
+	• Modeling 建模
+The modeling process is iterative where, through an exploration of the data, you select the variables required to support your analysis, organize the variables for input to analytical processes, execute the model, and determine how well the model supports your original assumptions. It can include a formal modeling of the structure of the data, but can also combine techniques from various analytic domains such as (and not limited to) statistics, machine learning, and operations research.
+建模过程是迭代的，通过对数据的研究，您可以选择支持分析所需的变量，组织变量以输入到分析过程，执行模型，并确定模型对原始假设的支持程度。它可以包括对数据结构的正式建模，也可以结合各种分析领域的技术，例如（但不限于）统计、机器学习和运筹学。
+
+	• Presentation 表达
+The penultimate step of the process is presenting your findings to others, typically in the form of a report or presentation. You will want to create a persuasive and thorough explanation of your solution. This can often be done using various plotting tools in Python and manually creating a presentation.
+Jupyter notebooks are a powerful tool in creating presentations for your analyses with pandas. These notebooks provide a means of both executing code and providing rich markdown capabilities to annotate and describe the execution at multiple points in the application. These can be used to create very effective, executable presentations that are visually rich with pieces of code, stylized text, and graphics.
+这个过程的倒数第二步是向他人展示你的发现，通常是以报告或陈述的形式。你需要对你的解决方案做出一个有说服力的、彻底的解释。这通常可以使用Python中的各种绘图工具并手动创建演示文稿来完成。
+Jupyter笔记本是为您的熊猫分析创建演示文稿的强大工具。这些笔记本提供了一种同时执行代码和提供丰富的标记功能的方法，可以在应用程序的多个点上对执行进行注释和描述。这些可以用来创建非常有效的、可执行的表示，这些表示在视觉上丰富了代码片段、样式化文本和图形。
+
+
+	• Reproduction 再现/分享
+An important piece of research is sharing and making your research reproducible. It is often said that if other researchers cannot reproduce your experiment and results, then you didn't prove a thing.
+Fortunately, for you, by having used pandas and Python, you will be able to easily make your analysis reproducible. This can be done by sharing the Python code that drives your pandas code, as well as the data.
+Jupyter notebooks also provide a convenient means of packaging both the code and application in a means that can be easily shared with anyone else with a Jupyter Notebook installation. And there are many free, and secure, sharing sites on the internet that allow you to either create or deploy your Jupyter notebooks for sharing.
+一项重要的研究是分享并使你的研究具有可复制性。人们常说，如果其他研究人员不能复制你的实验和结果，那么你就没有证明什么。
+幸运的是，对于您来说，通过使用panda和python，您将能够轻松地使您的分析具有可复制性。这可以通过共享驱动熊猫代码的python代码以及数据来实现。
+Jupyter笔记本电脑还提供了一种方便的方法，将代码和应用程序打包在一种可以通过Jupyter笔记本安装轻松与任何其他人共享的方法中。互联网上有许多免费、安全的共享站点，允许您创建或部署Jupyter笔记本进行共享。
+
+
 '''
+
 import numpy as np
 import pandas as pd
 
@@ -143,6 +252,14 @@ print(s1[[1,3]])
 #the index using the index parameter.
 s2=pd.Series([34,44,2,65],index=['a','d','e','伤害'])
 print(s2)
+
+
+
+
+
+
+
+
 
 
 
