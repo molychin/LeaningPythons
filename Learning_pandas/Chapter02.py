@@ -3,6 +3,7 @@
 Created on Sat Apr 20 10:09:11 2019
 
 @author: Administrator
+Learning pandas-Michael Heydt BIRMINGHAM-2017版
 """
 
 #Up and Running with pandas
@@ -36,6 +37,7 @@ and the DataFrame. We will examine the following:
 '''
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 import warnings
 #屏蔽来自未来变化的函数禁用警告信息
@@ -152,12 +154,18 @@ print(type(test1_df.Date[1]))    #此处默认是str
 #object, we can use the parse_dates parameter of the pd.read_csv() function.
 #The following code informs pandas to convert the content of the 'date' column
 #into actual TimeStamp objects.
+#parse_dates将字段转换为指定日期型
 test2_df = pd.read_csv('data/goog.csv',parse_dates=['Date'])
 #test2_df
 print(type(test2_df.Date[1]))
-#test2_df.index
+print(test2_df.index)
 
-
+#This can be rectified using the index_col parameter of the pd.read_csv() method
+#to specify which column in the file should be used as the index.
+test3_df = pd.read_csv('data/goog.csv',parse_dates=['Date'],index_col='Date')
+print(test3_df.head())
+print(test3_df.index)
+test3_df.Close.plot()
 
 
 
