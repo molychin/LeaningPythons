@@ -37,6 +37,10 @@ and the DataFrame. We will examine the following:
 import numpy as np
 import pandas as pd
 
+import warnings
+#屏蔽来自未来变化的函数禁用警告信息
+warnings.simplefilter(action='ignore', category=FutureWarning)
+
 #The pandas Series is the base data structure of pandas. A series is similar to a NumPy array, but it differs
 #by having an index, which allows for much richer lookup of items instead of just a zero-based array index
 #value. The following creates a series from a Python list:
@@ -114,8 +118,55 @@ temps_df['Difference'] = temp_diffs
 #the data in each row. The following code returns the evaluation of the value in the
 #Missoula temperature column being greater than 82 degrees:
 #可以根据应用于每行数据的逻辑表达式选择数据帧的行。
-print(temps_df.Missoula > 82)
-print(temps_df[temps_df.Missoula > 82])   #获取符合条件的数据行
+#print(temps_df.Missoula > 82)
+#print(temps_df[temps_df.Missoula > 82])   #获取符合条件的数据行
+
+#This technique is referred to as Boolean Selection in pandas terminology and will form the basis of
+#selecting rows based upon values in specific columns (like a query in SQLusing a WHERE clause - but as we
+#will see it is much more powerful).
+
+
+#----------------------------------------------
+# ## Loading data from files and the Web
+#The data used in analyses is typically provided from other systems via files that are
+#created and updated at various intervals, dynamically via access over the Web, or
+#from various types of databases. The pandas library provides powerful facilities for
+#easy retrieval of data from a variety of data sources and converting it into pandas
+#objects. Here, we will briefly demonstrate this ease of use by loading data from files
+#and from financial web services.
+#分析中使用的数据通常通过不同时间间隔创建和更新的文件从其他系统提供，动态地通过Web访问或从各种类型的数据库访问。
+#熊猫图书馆提供了强大的设施，可以方便地从各种数据源中检索数据，并将其转换为熊猫对象。在这里，我们将通过从文件和
+#金融Web服务加载数据来简要演示这种易用性。
+
+# #### Loading CSV data from files   从外部文件读取数据
+#test1_df = pd.read_csv('data/test1.csv')
+test1_df = pd.read_csv('data/goog.csv')
+#print(test1_df)
+#print(test1_df.head())
+#print(test1_df.Date)
+#print(test1_df.Date[1])
+#print(type(test1_df.Date))
+print(type(test1_df.Date[1]))    #此处默认是str
+
+#To guide pandas on how to convert data directly into a Python/pandas date
+#object, we can use the parse_dates parameter of the pd.read_csv() function.
+#The following code informs pandas to convert the content of the 'date' column
+#into actual TimeStamp objects.
+test2_df = pd.read_csv('data/goog.csv',parse_dates=['Date'])
+#test2_df
+print(type(test2_df.Date[1]))
+#test2_df.index
+
+
+
+
+
+
+
+
+
+
+
 
 
 
