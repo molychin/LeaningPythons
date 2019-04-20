@@ -54,18 +54,68 @@ s2=pd.Series([34,44,2,65],index=['a','d','e','伤害'])
 
 #Data in the Series object can now be accessed by alphanumeric index labels by
 #passing a list of the desired labels, as the following demonstrates:
-print(s2[['a','伤害']])
-
+#print(s2[['a','伤害']])
 #The s.index property allows direct access to the index of the Series object.
-print(s2.index)
+#print(s2.index)
+
+# create a Series who's index is a series of dates
+# between the two specified dates (inclusive)
+#A common usage of a Series in pandas is to represent a time series that associates
+#date/time index labels with a value. A date range can be created using the pandas
+#method pd.date_range().
+dates = pd.date_range('2016-04-01', '2016-04-06')
+#print(dates)
+
+temps1=pd.Series([50,34,445,667,7,34],index=dates)   #使用日期作为索引（标签）
+#print(temps1)
+#print(temps1['2016-04-02'])
+
+temps2 = pd.Series([70, 75, 69, 83, 79, 77],index = dates)
+temp_diffs=temps1-temps2
+#print(temp_diffs)
+
+#Statistical methods provided by NumPy can be applied to a pandas Series.
+#The following returns the mean of the values in the Series.
+#print(temps1.mean())  #求算术平均值
+#print(temp_diffs.mean())
+
+#temps_df.columns  #获取列名称
+#--------------------------------------------
+#A pandas Series can only have a single value associated with each index label. To have multiple values
+#per index label we can use a data frame. A data frame represents one or more Series objects aligned by
+#index label. Each series will be a column in the data frame, and each column can have an associated
+#name.
+#熊猫系列只能有一个与每个索引标签关联的值。为了每个索引标签有多个值，我们可以使用一个数据帧。数据帧表示一个或
+#多个按索引标签对齐的序列对象。每个序列都将是数据帧中的一列，并且每个列都可以有一个关联的名称。
+
+temps_df = pd.DataFrame({'Missoula': temps1,'Philadelphia': temps2})
+#print(temps_df['Missoula'])   #=temps_df.Missoula
+#print(temps_df[['Philadelphia', 'Missoula']])   #使用list参数
+temps_df['Difference'] = temp_diffs
+#print(temps_df)
+#print(temps_df.Difference[1:4])
 
 
+#Entire rows from a DataFrame can be retrieved using its .loc and .iloc properties.
+#The following code returns a Series object representing the second row of temps_df
+#of the DataFrame object by zero-based position of the row using the .iloc property:
+#.loc for label based indexing or .iloc for positional indexing
+#可以使用它的.loc和.iloc属性来检索数据帧中的整行。
+#以下代码返回表示第二行temps_df的series对象
+#通过使用.iloc属性的行的基于零的位置来显示数据帧对象：
+#.loc用于基于标签的索引，或.iloc用于位置索引
 
+#print(temps_df.iloc[1])  #获取指定(索引)行的数据，返回Series
+#print(temps_df.loc['2016-04-03'])  #获取指定（标签）行的数据
+##temps_df.ix[1].index   #DeprecationWarning
+#print(temps_df.iloc[[1, 3, 5]].Difference)
 
-
-
-
-
+#Rows of a DataFrame can be selected based upon a logical expression applied to
+#the data in each row. The following code returns the evaluation of the value in the
+#Missoula temperature column being greater than 82 degrees:
+#可以根据应用于每行数据的逻辑表达式选择数据帧的行。
+print(temps_df.Missoula > 82)
+print(temps_df[temps_df.Missoula > 82])   #获取符合条件的数据行
 
 
 
