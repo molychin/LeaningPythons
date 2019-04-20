@@ -315,30 +315,289 @@ Jupyter笔记本是为您的熊猫分析创建演示文稿的强大工具。这�
 在视觉上丰富了代码片段、样式化文本和图形。
 
 
-	• Reproduction 再现/分享
-An important piece of research is sharing and making your research reproducible. It is often said that if other researchers cannot reproduce your experiment and results, then you didn't prove a thing.
-Fortunately, for you, by having used pandas and Python, you will be able to easily make your analysis reproducible. This can be done by sharing the Python code that drives your pandas code, as well as the data.
-Jupyter notebooks also provide a convenient means of packaging both the code and application in a means that can be easily shared with anyone else with a Jupyter Notebook installation. And there are many free, and secure, sharing sites on the internet that allow you to either create or deploy your Jupyter notebooks for sharing.
+• Reproduction 再现/分享
+An important piece of research is sharing and making your research reproducible. 
+It is often said that if other researchers cannot reproduce your experiment and 
+results, then you didn't prove a thing.
+Fortunately, for you, by having used pandas and Python, you will be able to easily 
+make your analysis reproducible. This can be done by sharing the Python code that 
+drives your pandas code, as well as the data.
+Jupyter notebooks also provide a convenient means of packaging both the code and 
+application in a means that can be easily shared with anyone else with a Jupyter 
+Notebook installation. And there are many free, and secure, sharing sites on the 
+internet that allow you to either create or deploy your Jupyter notebooks for sharing.
 一项重要的研究是分享并使你的研究具有可复制性。人们常说，如果其他研究人员不能复制你的实验和结果，那么你就没有证明什么。
-幸运的是，对于您来说，通过使用panda和python，您将能够轻松地使您的分析具有可复制性。这可以通过共享驱动熊猫代码的python代码以及数据来实现。
-Jupyter笔记本电脑还提供了一种方便的方法，将代码和应用程序打包在一种可以通过Jupyter笔记本安装轻松与任何其他人共享的方法中。互联网上有许多免费、安全的共享站点，允许您创建或部署Jupyter笔记本进行共享。
+幸运的是，对于您来说，通过使用panda和python，您将能够轻松地使您的分析具有可复制性。这可以通过共享
+驱动熊猫代码的python代码以及数据来实现。
+Jupyter笔记本电脑还提供了一种方便的方法，将代码和应用程序打包在一种可以通过Jupyter笔记本安装
+轻松与任何其他人共享的方法中。互联网上有许多免费、安全的共享站点，允许您创建或部署Jupyter笔记本进行共享。
+
+
+A note on being iterative and agile
+Something very important to understand about data manipulation, analysis, and science is that it is an
+iterative process. Although there is a natural forward flow along the stages previously discussed, you will
+end up going forwards and backwards in the process. For instance, while in the exploration phase you
+may identify anomalies in the data that relate to data purity issues from the preparation stage, and need to
+go back and rectify those issues.
+This is part of the fun of the process. You are on an adventure to solve your initial problem, all the while
+gaining incremental insights about the data you are working with. These insights may lead you to ask new
+questions, to more exact questions, or to a realization that your initial questions were not the actual
+questions that needed to be asked. The process is truly a journey and not necessarily the destination.
+关于迭代和敏捷的注记
+了解数据操作、分析和科学的一些非常重要的事情是，它是一个迭代过程。虽然在前面讨论的阶段中有一个自然的前进流，
+但是您最终将在这个过程中前进和后退。例如，在勘探阶段，您可以识别与准备阶段的数据纯度问题相关的数据中的异常，
+并需要返回并纠正这些问题。
+这是这个过程的一部分乐趣。您正在冒险解决您的初始问题，同时获得有关您正在使用的数据的增量洞察。
+这些见解可能会引导你提出新的问题，更确切的问题，或者意识到你最初的问题不是需要问的实际问题。
+这个过程真的是一次旅行，不一定是目的地。
+
+
+■Concepts of data and analysis in our tour of pandas
+大熊猫旅游中的数据与分析概念
+
+Types of data
+Working with data in the wild you will come across several broad categories of data that will need to be
+coerced into pandas data structures. They are important to understand as the tools required to work with
+each type vary.
+数据类型
+在野外处理数据时，您将遇到几个需要强制转换成熊猫数据结构的广泛数据类别。理解它们很重要，因为使用每种类型所需的工具各不相同。
+
+Structured
+Structured data is any type of data that is organized as fixed fields within a record or file, such as data in
+relational databases and spreadsheets. Structured data depends upon a data model, which is the defined
+organization and meaning of the data and often how the data should be processed. This includes
+specifying the type of the data (integer, float, string, and so on), and any restrictions on the data, such as
+the number of characters, maximum and minimum values, or a restriction to a certain set of values.
+结构化的数据
+结构化数据是记录或文件中组织为固定字段的任何类型的数据，例如关系数据库和电子表格中的数据。结构化数据依赖于
+一个数据模型，它是数据的定义组织和含义，并且通常是处理数据的方式。这包括指定数据的类型（整数、浮点、字符串等），
+以及对数据的任何限制，例如字符数、最大值和最小值，或者对一组特定值的限制。
+
+Unstructured
+Unstructured data is data that is without any defined organization and which specifically does not break
+down into stringently defined columns of specific types. This can consist of many types of information
+such as photos and graphic images, videos, streaming sensor data, web pages, PDF files, PowerPoint
+presentations, emails, blog entries, wikis, and word processing documents.
+非结构化的数据
+非结构化数据是指没有任何定义的组织的数据，具体来说，这些数据不会分解为特定类型的严格定义的列。
+这可以包含许多类型的信息，如照片和图形图像、视频、流传感器数据、网页、PDF文件、PowerPoint演示文稿、
+电子邮件、博客条目、维基和文字处理文档。
+
+Semi-structured
+Semi-structured data fits in between unstructured. It can be considered a type of structured data, but lacks
+the strict data model structure. JSON is a form of semi-structured data. While good JSON will have a
+defined format, there is no specific schema for data that is always strictly enforced. Much of the time, the
+data will be in a repeatable pattern that can be easily converted into structured data types like the pandas
+DataFrame, but the process may need some guidance from you to specify or coerce data types.
+半结构化数据
+半结构化数据介于非结构化数据之间。它可以被视为一种结构化数据，但缺乏严格的数据模型结构。JSON是半结构化数据的一种形式。
+虽然好的JSON将有一个定义好的格式，但是对于总是严格执行的数据，没有特定的模式。在大多数情况下，数据将以可重复的模式出现，
+可以很容易地转换为结构化数据类型，如熊猫数据帧，但该过程可能需要您提供一些指导，以指定或强制数据类型。
+
+
+Variables
+A variable is any characteristic, number, or quantity that can be measured or counted. 
+变量:变量是可以测量或计数的任何特征、数字或数量。
+
+There are several broad types of statistical variables that we will come across when using pandas:
+Categorical
+Continuous
+Discrete
+在使用熊猫时，我们会遇到几种广泛的统计变量：
+○ 分类的
+○ 连续的
+○ 离散的
+
+Categorical 分类的
+A categorical variable is a variable that can take on one of a limited, and usually fixed, number of
+possible values. Each of the possible values is often referred to as a level. Categorical variables in
+pandas are represented by Categoricals, a pandas data type which corresponds to categorical variables in
+statistics. Examples of categorical variables are gender, social class, blood types, country affiliations,
+observation time, or ratings such as Likert scales.
+分类变量是一个变量，它可以接受一个有限的，通常是固定的，可能的值。每个可能的值通常被称为一个级别。
+大熊猫的分类变量是用分类来表示的，这是一种大熊猫的数据类型，与统计学中的分类变量相对应。分类变量的例子有性别、
+社会阶层、血型、国家隶属关系、观察时间或等级，如Likert量表。
+
+Continuous  连续的
+A continuous variable is a variable that can take on infinitely many (an uncountable number of) values.
+Observations can take any value between a certain set of real numbers. Examples of continuous variables
+include height, time, and temperature. Continuous variables in pandas are represented by either float or
+integer types (native to Python), typically in collections that represent multiple samplings of the specific
+variable.
+连续变量是一个可以接受无穷多（不可数）值的变量。
+观测值可以取某一组实数之间的任何值。连续变量的例子包括高度、时间和温度。panda中的连续变量由float或
+integer类型（python特有）表示，通常在表示特定变量的多个采样的集合中。
+
+
+Discrete  离散的
+A discrete variable is a variable where the values are based on a count from a set of distinct whole
+values. A discrete variable cannot be a fractional value between any two variables. Examples of discrete
+variables include the number of registered cars, number of business locations, and number of children in a
+family, all of which measure whole units (for example 1, 2, or 3 children). Discrete variables are
+normally represented in pandas by integers (or occasionally floats), again normally in collections of two
+or more samplings of a variable.
+离散变量是一个变量，其中的值基于一组不同的整数值的计数。离散变量不能是任何两个变量之间的分数值。
+离散变量的例子包括注册汽车的数量、商业地点的数量和家庭中的孩子的数量，所有这些都度量整个单位（例如1、2或3个孩子）。
+离散变量通常用整数（或偶尔浮点数）来表示，同样也通常用一个变量的两个或多个采样的集合来表示。
+
+
+Time series data 时间序列数据
+Time series data is a first-class entity within pandas. Time adds an important, extra dimension to samples
+of variables within pandas. Often variables are independent of the time they were sampled at; that is, the
+time at which they are sampled is not important. But in many cases they are. A time series forms a sample
+of a discrete variable at specific time intervals, where the observations have a natural temporal ordering.
+A stochastic model for a time series will generally reflect the fact that observations close together in time
+will be more closely related than observations that are further apart. Time series models will often make
+use of the natural one-way ordering of time so that values for a given period will be expressed as
+deriving in some way from past values rather than from future values.
+时间序列数据是大熊猫中的一类实体。时间给熊猫体内变量的样本增加了一个重要的额外维度。变量通常与取样时间无关，
+也就是说，取样时间并不重要。但在许多情况下，它们是。时间序列在特定的时间间隔内形成离散变量的样本，其中观测具有自然的时间顺序。
+一个时间序列的随机模型通常会反映这样一个事实，即在时间上紧密联系在一起的观测将比距离更远的观测更为密切。
+时间序列模型通常会利用自然的单向时间顺序，因此给定时间段的值将表示为以某种方式从过去的值而不是从未来的值派生。
+
+
+General concepts of analysis and statistics 分析与统计的一般概念
+In this text, we will only approach the periphery of statistics and the technical processes of data analysis.
+But several analytical concepts of are worth noting, some of which have implementations directly created
+within pandas. Others will need to rely on other libraries such as SciPy, but you may also come across
+them while working with pandas so an initial shout-out is valuable.
+
+在本文中，我们只讨论统计的外围和数据分析的技术过程。但是，有几个分析概念值得注意，其中一些概念的实现是直接
+在熊猫内部创建的。其他人将需要依赖其他图书馆，如scipy，但您也可能会在与熊猫合作时遇到它们，因此最初的呼喊是有价值的。
+
+
+Quantitative versus qualitative data/analysis
+定量与定性数据/分析
+
+Qualitative analysis is the scientific study of data that can be observed but cannot be measured. It focuses
+on cataloging the qualities of data. 
+Quantitative analysis is the study of actual values within data, with real measurements of items presented
+as data. 
+定性分析是对可以观察但不能测量的数据的科学研究。它着重于编目数据的质量。
+定量分析是研究数据中的实际值，并以数据的形式对项目进行实际测量。
+
+pandas deals primarily with quantitative data, providing you with extensive tools for representing
+observations of variables. Pandas does not provide for qualitative analysis, but does let you represent
+qualitative information.
+熊猫主要处理定量数据，为您提供了广泛的工具来表示变量的观察结果。熊猫不提供定性分析，但可以让你代表定性信息。
+
+Single and multivariate analysis
+Statistics, from a certain perspective, is the practice of studying variables, and specifically the
+observation of those variables. Much of statistics is based upon doing this analysis for a single variable,
+which is referred to as univariate analysis. Univariate analysis is the simplest form of analyzing data. It
+does not deal with causes or relationships and is normally used to describe or summarize data, and to find
+patterns in it. 
+单变量和多变量分析
+统计学，从某种角度来说，是研究变量的实践，特别是观察这些变量。许多统计数据都是基于对单个变量进行这种分析，即单变量分析。
+单变量分析是分析数据的最简单形式。它不处理原因或关系，通常用于描述或汇总数据，并在其中找到模式。
+
+Multivariate analysis is a modeling technique where there exist two or more output variables that affect
+the outcome of an experiment. Multivariate analysis is often related to concepts such as correlation and
+regression, which help us understand the relationships between multiple variables, as well as how those
+relationships affect the outcome.
+多变量分析是一种建模技术，其中存在两个或多个影响实验结果的输出变量。多元分析通常与相关和回归等概念有关，
+这些概念有助于我们理解多个变量之间的关系，以及这些关系如何影响结果。
+
+pandas primarily provides fundamental univariate analysis capabilities. And these capabilities are
+generally descriptive statistics, although there is inherent support for concepts such as correlations (as
+they are very common in finance and other domains).
+Other more complex statistics can be performed with StatsModels. Again, this is not per se a weakness of
+pandas, but a specific design decision to let those concepts be handled by other dedicated Python
+libraries.
+熊猫主要提供基本的单变量分析能力。这些能力一般都是描述性统计，尽管对相关性等概念有固有的支持（因为它们在金融和其他领域非常常见）。
+其他更复杂的统计数据可以用StatsModels执行。同样，这本身并不是熊猫的弱点，而是让其他专门的Python库处理这些概念的具体设计决策。
+
+Descriptive statistics  描述性统计
+Descriptive statistics are functions that summarize a given dataset, typically where the dataset represents
+a population or sample of a single variable (univariate data). They describe the dataset and form
+measures of a central tendency and measures of variability and dispersion.
+For example, the following are descriptive statistics:
+The distribution (for example, normal, Poisson)
+The central tendency (for example, mean, median, and mode)
+The dispersion (for example, variance, standard deviation)
+
+描述性统计是汇总给定数据集的函数，通常数据集表示单个变量（单变量数据）的总体或样本。它们描述了集中趋势的数据集
+和形式度量，以及可变性和分散性的度量。例如，以下是描述性统计：
+○ 分布（例如，正态分布、泊松分布）
+○ 中心趋势（例如平均值、中值和模式）
+○ 分散度（例如，方差、标准差）
+
+Inferential statistics 推论统计学
+Inferential statistics differs from descriptive statistics in that inferential statistics attempts to infer
+conclusions from data instead of simply summarizing it. 
+推论统计学不同于描述性统计学，因为推论统计学试图推断从数据中得出结论，而不是简单地总结。
+
+
+Stochastic models  随机模型
+Stochastic models are a form of statistical modeling that includes one or more random variables, and
+typically includes use of time series data. The purpose of a stochastic model is to estimate the chance that
+an outcome is within a specific forecast to predict conditions for different situations.
+随机模型是一种统计建模形式，包括一个或多个随机变量，通常包括使用时间序列数据。随机模型的目的是估计一个结果
+在一个特定的预测范围内的概率，以预测不同情况下的情况。
+
+
+Correlation  相关性
+Correlation is one of the most common statistics and is directly built into the pandas DataFrame. A
+correlation is a single number that describes the degree of relationship between two variables, and
+specifically between two sequences of observations of those variables.
+A common example of using a correlation is to determine how closely the prices of two stocks follows
+each other as time progresses. If the changes move closely, the two stocks have a high correlation, and if
+there is no discernible pattern they are uncorrelated. This is valuable information that can be used in a
+number of investment strategies.
+The level of correlation of two stocks can also vary slightly with the time frame of the entire dataset, as
+well as the interval. Fortunately, pandas has powerful capabilities for us to easily change these
+parameters and rerun correlations. We will look at correlations in several places later in the book.
+相关性是最常见的统计数据之一，直接构建在熊猫数据框架中。相关性是描述两个变量之间关系程度的单个数字，特别是
+这些变量的两个观察序列之间的关系程度。
+使用相关性的一个常见例子是确定随着时间的推移，两支股票的价格彼此之间的距离。如果变化很接近，这两个股票有很高的相关性，
+如果没有明显的模式，它们是不相关的。这是可用于多种投资策略的宝贵信息。
+两个股票的相关性水平也可能随整个数据集的时间框架以及间隔而略有不同。幸运的是，熊猫具有强大的能力，我们可以轻松地改变
+这些参数并重新运行相关性。我们将在本书后面的几个地方研究相关性。
+
+
+Regression  回归
+Regression is a statistical measure that estimates the strength of relationship between a dependent
+variable and a series of other variables. It can be used to understand the relationships between variables.
+An example in finance would be understanding the relationship between commodity prices and the stocks
+of businesses dealing in those commodities.
+回归是一种统计度量，用于估计因变量和一系列其他变量之间关系的强度。它可以用来理解变量之间的关系。
+金融学中的一个例子是了解商品价格与从事这些商品交易的企业的股票之间的关系。
+
+
+■Summary  总结
+In this chapter, we went on a tour of the how and why of pandas, data manipulation/analysis, and science.
+This started with an overview of why pandas exists, what functionality it contains, and how it relates to
+concepts of data manipulation, analysis, and data science.
+Then we covered a process for data analysis to set a framework for why certain functions exist in pandas.
+These include retrieving data, organizing and cleaning it up, doing exploration, and then building a formal
+model, presenting your findings, and being able to share and reproduce the analysis.
+Next, we covered several concepts involved in data and statistical modeling. This included covering
+many common analysis techniques and concepts, so as to introduce you to these and make you more
+familiar when they are explored in more detail in subsequent chapters.
+pandas is also a part of a larger Python ecosystem of libraries that are useful for data analysis and
+science. While this book will focus only on pandas, there are other libraries that you will come across
+and that were introduced so you are familiar with them when they crop up.
+We are ready to begin using pandas. In the next chapter, we will begin to ease ourselves into pandas,
+starting with obtaining a Python and pandas environment, an overview of Jupyter notebooks, and then
+getting a quick introduction to pandas Series and DataFrame objects before delving into them im more depth
+in subsequent elements of pandas.
+在这一章中，我们参观了大熊猫的方式和原因、数据处理/分析和科学。
+首先概述了熊猫的存在原因、包含的功能以及与数据操作、分析和数据科学概念的关系。
+然后，我们介绍了一个数据分析过程，为熊猫中存在某些功能的原因设置了一个框架。
+这包括检索数据、组织和清理数据、进行探索，然后构建正式模型、展示您的发现，以及能够共享和重现分析。
+接下来，我们介绍了数据和统计建模中涉及的几个概念。这包括许多常见的分析技术和概念，以便向您介绍这些技术和概念，
+并使您在随后的章节中更详细地了解它们时更加熟悉。
+熊猫也是大型python库生态系统的一部分，对数据分析和科学很有用。虽然这本书只关注熊猫，但还有其他的图书馆，
+你会发现，并介绍，所以你熟悉他们时，他们突然出现。
+我们准备开始使用熊猫。在下一章中，我们将开始对熊猫进行自我放松，从获取一个python和pandas环境开始，
+概述jupyter笔记本，然后在深入研究熊猫的后续元素之前，快速介绍熊猫系列和数据帧对象。
+
+
+
+
 
 
 '''
-
-import numpy as np
-import pandas as pd
-
-s1=pd.Series([2,5,7,9,np.nan])   #加入np.nan后，整数自动转化为浮点数
-print(s1[[1,3]])
-
-#A Series object can be created with a user-defined index by specifying the labels for
-#the index using the index parameter.
-s2=pd.Series([34,44,2,65],index=['a','d','e','伤害'])
-print(s2)
-
-
-
 
 
 
