@@ -325,7 +325,7 @@ ss=s2.reindex(['a', 'f'], fill_value=0)
 
 # create example to demonstrate fills
 s3 = pd.Series(['red', 'green', 'blue'], index=[0, 3, 5])
-print(s3)
+#print(s3)
 
 # forward fill example 前向填充
 #The following example demonstrates the concept of forward filling, often referred to as last known
@@ -334,23 +334,40 @@ print(s3)
 #下面的示例演示了前向填充的概念，通常称为最后一个已知值。序列重新编制索引以创建连续的整数索引，并通过
 #使用method='ffill'参数，为所有新索引标签分配以前已知的非NaN值：
 ss=s3.reindex(np.arange(0,7), method='ffill')
-print(ss)
+#print(ss)
 
 # backwards fill example  后向填充
 ss=s3.reindex(np.arange(0,7), method='bfill')
-print(ss)
+#print(ss)
 
+# # Modifying a Series in-place
+# generate a Series to play with
+np.random.seed(123456)
+s = pd.Series(np.random.randn(3), index=['a', 'b', 'c'])
+print(s)
 
+# change a value in the Series
+# this is done in-place
+# a new Series is not returned that has a modified value
+s['d'] = 100
+print(s)
 
+# modify the value at 'd' in-place
+s['d'] = -100
+print(s)
 
+# remove a row / item
+del(s['a'])
+print(s)
 
+copy = s.copy() # preserve s
+slice = copy[:2] # slice with first two rows
+print(slice)
 
-
-
-
-
-
-
+# change item with label 10 to 1000
+slice['b'] = 0
+# and see it in the source
+print(copy)
 
 
 
