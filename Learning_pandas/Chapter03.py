@@ -265,6 +265,105 @@ s2 = pd.Series([4.0, 5.0, 6.0, 7.0], index=['a', 'a', 'c', 'a'])
 #为了处理这个场景，熊猫为我们提供了布尔选择。布尔选择将逻辑表达式应用于序列的值，并返回一系列新的
 #布尔值，这些值表示该表达式对每个值的结果。然后，该结果只能用于提取结果为true的值。
 
+# which rows have values that are > 5?
+s = pd.Series(np.arange(0, 5), index=list('abcde'))
+#print(s)
+#logical_results = (s >= 3)
+#print(logical_results)
+## select where True
+#print(s[logical_results])   
+## a little shorter version
+#print(s[s > 2])
+
+# commented as it throws an exception
+# s[s >= 2 and s < 5]
+# correct syntax
+#print(s[(s >=2) & (s < 5)])
+
+#It is possible to determine whether all the values in a Series match a given expression using the .all() method. 
+#可以使用.all（）方法确定序列中的所有值是否与给定表达式匹配。
+# are all items >= 0?
+#print((s >= 2).all())
+#print(s[s <2].any())
+#print((s < 2).sum())
+
+# # Reindexing a Series
+# sample series of five items
+np.random.seed(123456)
+s = pd.Series(np.random.randn(5))
+#print(s)
+# change the index
+s.index = ['a', 'b', 'c', 'd', 'e']
+#print(s)
+
+# a series that we will reindex
+np.random.seed(123456)
+s1 = pd.Series(np.random.randn(4), ['a', 'b', 'c', 'd'])
+#print(s1)
+
+# reindex with different number of labels
+# results in dropped rows and/or NaN's
+s2 = s1.reindex(['a', 'c', 'g'])
+#print(s2)
+
+# different types for the same values of labels
+# causes big trouble
+s1 = pd.Series([0, 1, 2], index=[0, 1, 2])
+s2 = pd.Series([3, 4, 5], index=['0', '1', '2'])
+#print(s1 + s2)
+
+# reindex by casting the label types
+# and we will get the desired result
+s2.index = s2.index.values.astype(int)
+#print(s1 + s2)
+
+#The .reindex() method has the default action of inserting NaN as a missing value when labels are not found in the source Series. This value can be changed by using the fill_value parameter.
+# fill with 0 instead of NaN
+s2 = s.copy()
+ss=s2.reindex(['a', 'f'], fill_value=0)
+#print(ss)
+
+# create example to demonstrate fills
+s3 = pd.Series(['red', 'green', 'blue'], index=[0, 3, 5])
+print(s3)
+
+# forward fill example 前向填充
+#The following example demonstrates the concept of forward filling, often referred to as last known
+#value. The Series is re-indexed to create a contiguous integer index, and by using the method='ffill'
+#parameter, any new index labels are assigned the previously known non-NaN value:
+#下面的示例演示了前向填充的概念，通常称为最后一个已知值。序列重新编制索引以创建连续的整数索引，并通过
+#使用method='ffill'参数，为所有新索引标签分配以前已知的非NaN值：
+ss=s3.reindex(np.arange(0,7), method='ffill')
+print(ss)
+
+# backwards fill example  后向填充
+ss=s3.reindex(np.arange(0,7), method='bfill')
+print(ss)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
