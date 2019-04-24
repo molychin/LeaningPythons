@@ -149,17 +149,68 @@ print(sp500.head())
 
 # # Selecting columns of a DataFrame
 # retrieve the Sector column
-print(sp500['Sector'].head())
+#print(sp500['Sector'].head())
+
+#print(type(sp500['Sector']))
+
+# retrieve the Price and Book Value columns
+#print(sp500[['Price', 'Book Value']].head())
+
+# show that this is a DataFrame
+#print(type(sp500[['Price', 'Book Value']]))
+
+# attribute access of column by name
+#print(sp500.Price)
+
+# # Selecting rows of a DataFrame
+
+# get row with label MMM
+# returned as a Series
+#print(sp500.loc['MMM'])
+
+# rows with label MMM and MSFT
+# this is a DataFrame result
+#print(sp500.loc[['MMM', 'MSFT']])
+
+# get rows in location 0 and 2
+#print(sp500.iloc[[0, 2]])
+
+# get the location of MMM and A in the index
+i1 = sp500.index.get_loc('MMM')
+i2 = sp500.index.get_loc('A')
+#print((i1, i2))     #索引序列号
+
+# and get the rows
+#print(sp500.iloc[[i1, i2]])
 
 
+# # Scalar lookup by label or location using .at[] and .iat[] 
+# by label in both the index and column
+#print(sp500.at['MMM', 'Price'])
 
+# by location.  Row 0, column 1
+#print(sp500.iat[0, 1])
 
+# # Slicing using the [] operator
+# first five rows
+#print(sp500[:5])
+# ABT through ACN labels
+#print(sp500['ABT':'ACN'])
 
+# # Selecting rows using Boolean selection
+# what rows have a price < 100?
+#print(sp500.Price < 100)
 
+# now get the rows with Price < 100
+#print(sp500[sp500.Price < 100])
 
+# get only the Price where Price is < 10 and > 0
+r = sp500[(sp500.Price < 10) & (sp500.Price > 6)] ['Price']
+print(r)
 
-
-
+# # Selecting across both rows and columns
+# select the price and sector columns for ABT and ZTS
+print(sp500.loc[['ABT', 'ZTS']][['Sector', 'Price']])
 
 
 
