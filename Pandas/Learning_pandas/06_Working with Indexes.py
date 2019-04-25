@@ -1,194 +1,39 @@
 
-# coding: utf-8
 
-# # Configuring panadas
 
-# In[1]:
 
 
-# import numpy and pandas
-import numpy as np
-import pandas as pd
-
-# used for dates
-import datetime
-from datetime import datetime, date
-
-# Set some pandas options controlling output format
-pd.set_option('display.notebook_repr_html', False)
-pd.set_option('display.max_columns', 8)
-pd.set_option('display.max_rows', 10)
-pd.set_option('display.width', 60)
-
-# bring in matplotlib for graphics
-import matplotlib.pyplot as plt
-get_ipython().magic('matplotlib inline')
-
-# read in the data and print the first five rows
-# use the Symbol column as the index, and 
-# only read in columns in positions 0, 2, 3, 7
-sp500 = pd.read_csv("data/sp500.csv", 
-                    index_col='Symbol', 
-                    usecols=[0, 2, 3, 7])
-
-
-# # The importance of indexes
-
-# In[2]:
-
-
-# create DataFame of random numbers and a key column
-np.random.seed(123456)
-df = pd.DataFrame({'foo':np.random.random(10000), 'key':range(100, 10100)})
-df[:5]
-
-
-# In[3]:
-
-
-# boolean select where key is 10099
-df[df.key==10099]
-
-
-# In[4]:
-
-
-# time the select
-get_ipython().magic('timeit df[df.key==10099]')
-
-
-# In[5]:
-
-
-# move key to the index
-df_with_index = df.set_index(['key'])
-df_with_index[:5]
-
-
-# In[6]:
-
-
-# now can lookup with the index
-df_with_index.loc[10099]
-
-
-# In[7]:
-
-
-# and this is a lot faster
-get_ipython().magic('timeit df_with_index.loc[10099]')
-
-
-# # The fundamental index type: Index
-
-# In[8]:
-
-
-# show that the columns are actually an index
-temps = pd.DataFrame({ "City": ["Missoula", "Philadelphia"],
-                       "Temperature": [70, 80] })
-temps
-
-
-# In[9]:
-
-
-# we can see columns is an index
-temps.columns
-
-
-# # Integer index labels using Int64Index and RangeIndex
-
-# In[10]:
-
-
-# explicitly create an Int64Index
-df_i64 = pd.DataFrame(np.arange(10, 20), index=np.arange(0, 10))
-df_i64[:5]
-
-
-# In[11]:
-
-
-# view the index
-df_i64.index
-
-
-# In[12]:
-
-
-# by default we are given a RangeIndex
-df_range = pd.DataFrame(np.arange(10, 15))
-df_range[:5]
-
-
-# In[13]:
-
-
-df_range.index
-
-
-# # Floating point labels using Float64Index
-
-# In[14]:
-
-
-# indexes using a Float64Index
-df_f64 = pd.DataFrame(np.arange(0, 1000, 5), 
-                      np.arange(0.0, 100.0, 0.5))
-df_f64.iloc[:5] # need iloc to slice first five
-
-
-# In[15]:
-
-
-df_f64.index
-
-
-# # Representing discrete intervals using IntervalIndex
 
 # In[16]:
 
 
-# a DataFrame with an IntervalIndex
-df_interval = pd.DataFrame({ "A": [1, 2, 3, 4]},
-                    index = pd.IntervalIndex.from_breaks(
-                        [0, 0.5, 1.0, 1.5, 2.0]))
-df_interval
+
 
 
 # In[17]:
 
 
-df_interval.index
 
 
-# # Categorical values as an index: CategoricalIndex
+
+
 
 # In[18]:
 
 
-# create a DataFrame with a Categorical coulmn
-df_categorical = pd.DataFrame({'A': np.arange(6),
-                               'B': list('aabbca')})
-df_categorical['B'] = df_categorical['B'].astype('category', 
-                                          categories=list('cab'))
-df_categorical
+
 
 
 # In[19]:
 
 
-# shift the categorical column to the index
-df_categorical = df_categorical.set_index('B')
-df_categorical.index
+
 
 
 # In[20]:
 
 
-# lookup values in category 'a'
-df_categorical.loc['a']
+
 
 
 # # Indexing by dates and times using DatetimeIndex

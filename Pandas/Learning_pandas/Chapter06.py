@@ -40,7 +40,7 @@ from datetime import datetime, date
 sp500 = pd.read_csv("data/sp500.csv", 
                     index_col='Symbol', 
                     usecols=[0, 2, 3, 7])
-print(sp500.head())
+#print(sp500.head())
 # # The importance of indexes
 # create DataFame of random numbers and a key column
 np.random.seed(123456)
@@ -57,7 +57,7 @@ df = pd.DataFrame({'foo':np.random.random(10000), 'key':range(100, 10100)})
 #performance.
 #从概念上讲，这很简单。但是如果我们想反复这样做呢？这可以在python中使用%timeit语句进行模拟。以下代码重复执行查找并报告性能。
 # time the select
-get_ipython().magic('timeit df[df.key==10099]')  #552us
+#get_ipython().magic('timeit df[df.key==10099]')  #552us
 
 #%timeit df[df.key==10099]     #error
 
@@ -68,7 +68,7 @@ df_with_index = df.set_index(['key'])
 # now can lookup with the index
 df_with_index.loc[10099]
 # and this is a lot faster
-get_ipython().magic('timeit df_with_index.loc[10099]')  #101us
+#get_ipython().magic('timeit df_with_index.loc[10099]')  #101us
 
 # # The fundamental index type: Index
 
@@ -93,13 +93,76 @@ get_ipython().magic('timeit df_with_index.loc[10099]')  #101us
 #这种类型的索引是最通用的，表示一组有序且可切片的值。它包含的值必须是可哈希的python对象。这是因为索引
 #将使用此哈希来高效查找与该对象的值关联的值。虽然哈希查找优于线性查找，但还有其他类型的索引可以进一步优化。
 
+# show that the columns are actually an index
+temps = pd.DataFrame({ "City": ["Missoula", "Philadelphia"],
+                       "Temperature": [70, 80] })
+#print(temps)
+# we can see columns is an index
+#print(temps.columns)
+
+# # Integer index labels using Int64Index and RangeIndex
+# explicitly create an Int64Index
+df_i64 = pd.DataFrame(np.arange(10, 20), index=np.arange(0, 10))
+#df_i64 = pd.DataFrame(np.arange(10, 20), np.arange(0, 10))
+#print(df_i64[:5])
+# view the index
+#print(df_i64.index)
+
+# by default we are given a RangeIndex
+df_range = pd.DataFrame(np.arange(10, 15))
+#print(df_range[:5])
+#print(df_range.index)
+
+# # Floating point labels using Float64Index
+# indexes using a Float64Index
+df_f64 = pd.DataFrame(np.arange(0, 1000, 5), 
+                      np.arange(0.0, 100.0, 0.5))
+#print(df_f64.iloc[:5]) # need iloc to slice first five
+#print(df_f64.index)
+#Representing discrete intervals using
+#IntervalIndex
+#Distinct buckets of labels can be represented using an IntervalIndex. The interval is closed at one end,
+#either the left or right, meaning that the value at that end of the interval is included in that interval. The
+#following code shows the creation of a DataFrame using intervals as an index.
+#用intervalindex表示离散区间
+#不同的标签桶可以用intervalindex表示。该间隔在一端（左侧或右侧）关闭，这意味着该间隔的该端的
+#值包含在该间隔中。以下代码显示使用间隔作为索引创建数据帧。
+
+# # Representing discrete intervals using IntervalIndex
+# a DataFrame with an IntervalIndex
+#pd.IntervalIndex.from_breaks  ??????
+df_interval = pd.DataFrame({ "A": [1, 2, 3, 4]},
+                    index = pd.IntervalIndex.from_breaks(
+                        [0, 0.5, 1.0, 1.5, 2.0]))
+#print(df_interval)
+
+#Categorical values as an index - CategoricalIndex
+#A CategoricalIndex is used to represent a sparsely populated index for an underlying Categorical. 
+#分类值作为索引-分类索引
+#分类索引用于表示底层分类的稀疏填充索引。
+#print(df_interval.index)
+
+# # Categorical values as an index: CategoricalIndex
+# create a DataFrame with a Categorical coulmn
+df_categorical = pd.DataFrame({'A': np.arange(6),
+                               'B': list('aabbca')})
+df_categorical['B'] = df_categorical['B'].astype('category',categories=list('cab'))  #????
+print(df_categorical)
+
+# shift the categorical column to the index
+df_categorical = df_categorical.set_index('B')
+print(df_categorical)
+print(df_categorical.index)
 
 
+#Indexing by date and time using DatetimeIndex
+#A DatetimeIndex is used to represent a set of dates and times. These are extensively used in time series data
+#where samples are taken at specific intervals of time. 
+#使用日期时间索引按日期和时间进行索引
+#datetimeindex用于表示一组日期和时间。它们广泛用于时间序列数据中，在特定时间间隔内采集样本。
 
-
-
-
-
+# lookup values in category 'a'
+df_categorical.loc['a']
 
 
 

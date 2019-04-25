@@ -4,6 +4,14 @@ Created on Fri Apr 19 13:29:50 2019
 
 @author: Administrator
 """
+
+#Python Data Analysis
+#Learn how to apply powerful data analysis techniques
+#with popular open source Python modules
+#Ivan Idris
+
+
+
 #from pandas import Series
 import pandas as pd
 
