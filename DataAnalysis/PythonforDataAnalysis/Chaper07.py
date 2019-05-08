@@ -86,11 +86,59 @@ cleaned=data.dropna(how='all')    #每行所有值为nan，则删除
 
 #To drop columns in the same way, pass axis=1:
 data[4] = np.nan
-print(data)
+#print(data)
 cleaned=data.dropna(axis=1, how='all')
-print(cleaned)
+#print(cleaned)
 
+df = pd.DataFrame(np.random.randn(7, 3))
+#print(df)
+df.iloc[:4, 1] = np.nan
+df.iloc[:2, 2] = np.nan
+#print(df)
+#print(df.dropna())
+#print(df.dropna(thresh=2))   #门槛为2个
 
+#Filling In Missing Data
+#Rather than filtering out missing data (and potentially discarding other data along
+#with it), you may want to fill in the “holes” in any number of ways. For most pur‐
+#poses, the fillna method is the workhorse function to use. 
+#填写缺失数据
+#除了过滤掉丢失的数据（并可能丢弃其他数据），您可能希望以任何方式填充“漏洞”。在大多数情况下，Fillna方法是要使用的Workhorse函数。
+#print(df.fillna(0))    #全部用0填充nan
+#Calling fillna with a dict, you can use a different fill value for each column:
+#print(df.fillna({1: 0.5, 2: 0}))   #第1序列填充0.5，第2序列填充0.0
+#fillna returns a new object, but you can modify the existing object in-place:
+df.fillna(0, inplace=True)
+#print(df)
+
+df = pd.DataFrame(np.random.randn(6, 3))
+df.iloc[2:, 1] = np.nan
+df.iloc[4:, 2] = np.nan
+#print(df)
+#print(df.fillna(method='ffill'))  #前向填充
+#print(df.fillna(method='ffill', limit=2))   #前向填充,限制为2个
+
+#With fillna you can do lots of other things with a little creativity. For example, you
+#might pass the mean or median value of a Series:
+data = pd.Series([1., np.nan, 3.5, np.nan, 7])
+#print(data)
+#print(data.fillna(data.mean()))     #以平均值填充
+
+#Table 7-2. fillna function arguments
+#Argument Description
+#value：Scalar value or dict-like object to use to fill missing values
+#method：Interpolation; by default 'ffill' if function called with no other arguments
+#axis：Axis to fill on; default axis=0
+#inplace：Modify the calling object without producing a copy
+#limit： For forward and backward filling, maximum number of consecutive periods to fill
+
+#--------------Removing Duplicates
+data = pd.DataFrame({'k1': ['one', 'two'] * 3 + ['two'],
+    'k2': [1, 1, 2, 3, 3, 4, 4]})
+print(data)
+print(data.duplicated())
+#Relatedly, drop_duplicates returns a DataFrame where the duplicated array is False:
+print(data.drop_duplicates())    #去重
 
 
 

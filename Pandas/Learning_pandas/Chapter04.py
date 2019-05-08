@@ -11,11 +11,11 @@ import numpy as np
 import pandas as pd
 
 # used for dates
-import datetime
-from datetime import datetime, date
+#import datetime
+#from datetime import datetime, date
 
 # bring in matplotlib for graphics
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 #get_ipython().magic('matplotlib inline')
 
 

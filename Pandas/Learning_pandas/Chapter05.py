@@ -10,8 +10,8 @@ import numpy as np
 import pandas as pd
 
 # used for dates
-import datetime
-from datetime import datetime, date
+#import datetime
+#from datetime import datetime, date
 
 #Manipulating DataFrame Structure
 #pandas provides a powerful manipulation engine for you to use to explore your data. This exploration
